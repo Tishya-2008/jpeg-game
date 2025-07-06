@@ -4,6 +4,7 @@ const easyMemes = ['e1.jpg', 'e2.jpg', 'e3.jpg', 'e4.jpg'];
 const mediumMemes = ['m1.jpg', 'm2.jpg', 'm3.jpg', 'm4.jpg'];
 const hardMemes = ['h1.jpg', 'h2.jpg', 'h3.jpg', 'h4.jpg'];
 const bruhSound = new Audio('/Bruh.mp3');
+const partySound = new Audio('/party.mp3');
 
 let chosenEasyMeme = null;
 let chosenMediumMeme = null;
@@ -144,6 +145,9 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
             if (similarityPercent >= 60) {
               const nextArrow = video.closest(".screen")?.querySelector(".next-arrow");
               if (nextArrow) nextArrow.style.display = "inline";
+              partySound.currentTime = 0; // rewind if already playing
+              partySound.play().catch(e => console.log("Audio play error:", e));
+
             }
           }
         })
