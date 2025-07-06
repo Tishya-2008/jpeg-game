@@ -10,11 +10,29 @@ let chosenHardMeme = null;
 
 function showScreen(index) {
   for (let i = 0; i <= 10; i++) {
-    document.getElementById("screen-" + i).classList.remove("active");
+    const screen = document.getElementById("screen-" + i);
+    if (screen) {
+      screen.classList.remove("active");
+    }
   }
-  document.getElementById("screen-" + index).classList.add("active");
+  const targetScreen = document.getElementById("screen-" + index);
+  if (targetScreen) {
+    targetScreen.classList.add("active");
+  }
   currentScreen = index;
 
+  // Reset next arrows globally (hide all)
+  document.querySelectorAll(".next-arrow").forEach(arrow => {
+    arrow.style.display = "none";
+  });
+
+  // Show next arrows on all screens except 6,7,8
+  if (![6, 7, 8].includes(index)) {
+    const nextArrow = targetScreen?.querySelector(".next-arrow");
+    if (nextArrow) nextArrow.style.display = "inline";
+  }
+
+  // Load memes on their respective screens if not already chosen
   if (index === 6 && !chosenEasyMeme) {
     chosenEasyMeme = easyMemes[Math.floor(Math.random() * easyMemes.length)];
     const img = document.getElementById("easy-meme");
@@ -62,11 +80,11 @@ document.querySelectorAll(".back-arrow").forEach(function (arrow) {
 function setupWebcam(videoId, canvasId, buttonId, resultId) {
   const video = document.getElementById(videoId);
   const canvas = document.getElementById(canvasId);
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas?.getContext('2d');
   const btn = document.getElementById(buttonId);
   const similarityDiv = document.getElementById(resultId);
 
-  if (video && canvas && btn && similarityDiv) {
+  if (video && canvas && ctx && btn && similarityDiv) {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(stream => { video.srcObject = stream; })
       .catch(err => alert("Webcam error: " + err));
@@ -79,7 +97,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
 
       const base64Image = canvas.toDataURL('image/jpeg');
 
-      // Determine meme name based on screen
+      // Determine meme name based on screen/videoId
       let memeName = "";
       if (videoId === "webcam") {
         memeName = chosenEasyMeme?.replace('.jpg', '');
@@ -92,6 +110,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
       }
 
       similarityDiv.textContent = "Comparing...";
+      btn.disabled = true;
 
       fetch('http://127.0.0.1:5000/compare', {
         method: 'POST',
@@ -103,25 +122,30 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
       })
         .then(res => res.json())
         .then(data => {
+          btn.disabled = false;
+
           if (data.error) {
             similarityDiv.textContent = "Error: " + data.error;
           } else {
             const similarityPercent = (data.similarity * 100).toFixed(1);
             similarityDiv.textContent = "Similarity Score: " + similarityPercent + "%";
-          
+
             if (similarityPercent >= 74) {
-              const nextArrow = video.closest(".screen").querySelector(".next-arrow");
+              // Show next arrow only on this screen
+              const nextArrow = video.closest(".screen")?.querySelector(".next-arrow");
               if (nextArrow) nextArrow.style.display = "inline";
             }
           }
         })
         .catch(() => {
           similarityDiv.textContent = "Error comparing poses";
+          btn.disabled = false;
         });
     };
   }
 }
 
+// Initialize webcams for all screens
 setupWebcam("webcam", "canvas", "captureBtn", "similarityScore");
 setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
 setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
@@ -163,7 +187,7 @@ function typeLine() {
   } else {
     lineIndex++;
     charIndex = 0;
-    setTimeout(typeLine, 700); 
+    setTimeout(typeLine, 700);
   }
 }
 
