@@ -126,7 +126,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
             const similarityPercent = (data.similarity * 100).toFixed(1);
             similarityDiv.textContent = "Similarity Score: " + similarityPercent + "%";
 
-            if (similarityPercent >= 74) {
+            if (similarityPercent >= 60) {
               const nextArrow = video.closest(".screen")?.querySelector(".next-arrow");
               if (nextArrow) nextArrow.style.display = "inline";
             }
