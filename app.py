@@ -39,10 +39,8 @@ def get_skeleton(img):
         return None
 
 def calculate_similarity(img1, img2):
-    img1_gray = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-    img2_gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-    img1_gray = cv2.resize(img1_gray, (300, 300))
-    img2_gray = cv2.resize(img2_gray, (300, 300))
+    img1_gray = cv2.resize(img1, (500, 250))
+    img2_gray = cv2.resize(img2, (500, 250))
 
     img1_norm = img1_gray / 255.0
     img2_norm = img2_gray / 255.0
