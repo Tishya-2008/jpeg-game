@@ -88,7 +88,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
         video.onloadedmetadata = () => {
           video.play();
           canvas.width = 500;
-          canvas.height = 200;
+          canvas.height = 250;
         };
       })
 
@@ -132,6 +132,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
             const similarityPercent = (data.similarity * 100).toFixed(1);
             similarityDiv.textContent = "Similarity Score: " + similarityPercent + "%";
             similarityDiv.style.color = "white";
+            similarityDiv.style.fontFamily = "monospace";
 
 
             if (similarityPercent >= 60) {
