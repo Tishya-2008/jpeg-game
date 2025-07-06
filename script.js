@@ -30,7 +30,7 @@ let chosenHardMeme = null;
 
 function showScreen(index) {
   if ([6, 7, 8, 9].includes(index)) {
-    bruhSound.currentTime = 0; // rewind if already playing
+    bruhSound.currentTime = 0;
     bruhSound.play().catch(e => console.log("Audio play error:", e));
   }
 
@@ -44,6 +44,7 @@ function showScreen(index) {
   if (targetScreen) {
     targetScreen.classList.add("active");
   }
+
   currentScreen = index;
 
   document.querySelectorAll(".next-arrow").forEach(arrow => {
@@ -56,31 +57,31 @@ function showScreen(index) {
   }
 
   if (index === 6 && !chosenEasyMeme) {
-  chosenEasyMeme = easyMemes[Math.floor(Math.random() * easyMemes.length)];
-  const img = document.getElementById("easy-meme");
-  const caption = document.getElementById("easy-meme-caption");
-  if (img) img.src = "memes/" + chosenEasyMeme.src;
-  if (caption) caption.textContent = chosenEasyMeme.caption;
-  console.log("Chosen Easy Meme (screen-6):", chosenEasyMeme);
-}
+    chosenEasyMeme = easyMemes[Math.floor(Math.random() * easyMemes.length)];
+    const img = document.getElementById("easy-meme");
+    const caption = document.getElementById("easy-meme-caption");
+    if (img) img.src = "memes/" + chosenEasyMeme.src;
+    if (caption) caption.textContent = chosenEasyMeme.caption;
+  }
 
-if (index === 7 && !chosenMediumMeme) {
-  chosenMediumMeme = mediumMemes[Math.floor(Math.random() * mediumMemes.length)];
-  const img = document.getElementById("medium-meme");
-  const caption = document.getElementById("medium-meme-caption");
-  if (img) img.src = "memes/" + chosenMediumMeme.src;
-  if (caption) caption.textContent = chosenMediumMeme.caption;
-  console.log("Chosen Medium Meme (screen-7):", chosenMediumMeme);
-}
+  if (index === 7 && !chosenMediumMeme) {
+    chosenMediumMeme = mediumMemes[Math.floor(Math.random() * mediumMemes.length)];
+    const img = document.getElementById("medium-meme");
+    const caption = document.getElementById("medium-meme-caption");
+    if (img) img.src = "memes/" + chosenMediumMeme.src;
+    if (caption) caption.textContent = chosenMediumMeme.caption;
+  }
 
-if (index === 8 && !chosenHardMeme) {
-  chosenHardMeme = hardMemes[Math.floor(Math.random() * hardMemes.length)];
-  const img = document.getElementById("hard-meme");
-  const caption = document.getElementById("hard-meme-caption");
-  if (img) img.src = "memes/" + chosenHardMeme.src;
-  if (caption) caption.textContent = chosenHardMeme.caption;
-  console.log("Chosen Hard Meme (screen-8):", chosenHardMeme);
-}
+  if (index === 8 && !chosenHardMeme) {
+    chosenHardMeme = hardMemes[Math.floor(Math.random() * hardMemes.length)];
+    const img = document.getElementById("hard-meme");
+    const caption = document.getElementById("hard-meme-caption");
+    if (img) img.src = "memes/" + chosenHardMeme.src;
+    if (caption) caption.textContent = chosenHardMeme.caption;
+  }
+
+  // 🟢 START TYPING ANIMATION IF THAT SCREEN NEEDS IT
+  startTypingIfNeeded(index);
 }
 
 document.querySelectorAll(".next-arrow").forEach(function (arrow) {
@@ -126,15 +127,10 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
       const base64Image = canvas.toDataURL('image/jpeg');
 
       let memeName = "";
-      if (videoId === "webcam") {
-        memeName = chosenEasyMeme?.src.replace('.jpg', '');
-      } else if (videoId === "webcam-7") {
-        memeName = chosenMediumMeme?.src.replace('.jpg', '');
-      } else if (videoId === "webcam-8") {
-        memeName = chosenHardMeme?.src.replace('.jpg', '');
-      } else if (videoId === "webcam-9") {
-        memeName = "sigma";
-      }
+      if (videoId === "webcam") memeName = chosenEasyMeme?.src.replace('.jpg', '');
+      else if (videoId === "webcam-7") memeName = chosenMediumMeme?.src.replace('.jpg', '');
+      else if (videoId === "webcam-8") memeName = chosenHardMeme?.src.replace('.jpg', '');
+      else if (videoId === "webcam-9") memeName = "sigma";
 
       similarityDiv.textContent = "Comparing...";
       btn.disabled = true;
@@ -142,12 +138,8 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
       fetch('http://127.0.0.1:5000/compare', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          image: base64Image,
-          meme_name: memeName
-        })
+        body: JSON.stringify({ image: base64Image, meme_name: memeName })
       })
-
         .then(res => res.json())
         .then(data => {
           btn.disabled = false;
@@ -161,13 +153,11 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
             similarityDiv.style.fontFamily = "monospace";
             similarityDiv.style.fontSize = "20px";
 
-
             if (similarityPercent >= 60) {
               const nextArrow = video.closest(".screen")?.querySelector(".next-arrow");
               if (nextArrow) nextArrow.style.display = "inline";
-              partySound.currentTime = 0; // rewind if already playing
+              partySound.currentTime = 0;
               partySound.play().catch(e => console.log("Audio play error:", e));
-
             }
           }
         })
@@ -184,11 +174,12 @@ setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
 setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
 setupWebcam("webcam-9", "canvas-9", "captureBtn-9", "similarityScore-9");
 
+// 🔠 TYPING TEXT
 const texts = [
   "Welcome to ...",
   "In a world where memes reign supreme and raccoons hoard pastries like priceless treasure... ",
   "Kyle was always the second pick. His brother Marvin? A coding prodigy.",
-  "The previous workers were decieved by it's cunning guise of innocence",
+  "The previous workers were deceived by its cunning guise of innocence",
   "But I see the monster behind it, the devourer of coffee blood, destroyer of sanitation.",
   "You know what the raccoons are scared of ... OUR MEME faces! Let's show them"
 ];
@@ -202,49 +193,41 @@ const elementIds = [
   "typing-text5"
 ];
 
-let lineIndex = 0;
-let charIndex = 0;
+const typedAlready = new Set();
 
-function typeLine() {
-  if (lineIndex >= texts.length) return;
+function typeLine(lineIndex) {
+  if (lineIndex >= texts.length || typedAlready.has(lineIndex)) return;
 
   const currentElement = document.getElementById(elementIds[lineIndex]);
-  if (!currentElement) {
-    console.warn(`Element with id ${elementIds[lineIndex]} not found.`);
-    lineIndex++;
-    charIndex = 0;
-    setTimeout(typeLine, 500);
-    return;
+  if (!currentElement) return;
+
+  currentElement.textContent = '';
+  let charIndex = 0;
+
+  function typeChar() {
+    if (charIndex < texts[lineIndex].length) {
+      currentElement.textContent += texts[lineIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeChar, 40);
+    }
   }
 
-  if (charIndex < texts[lineIndex].length) {
-    currentElement.textContent += texts[lineIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(typeLine, 50);
-  } else {
-    lineIndex++;
-    charIndex = 0;
-    setTimeout(typeLine, 700);
+  typedAlready.add(lineIndex);
+  typeChar();
+}
+
+function startTypingIfNeeded(screenIndex) {
+  if (screenIndex >= 0 && screenIndex <= 5) {
+    typeLine(screenIndex);
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  elementIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = '';
-  });
-
-  typeLine();
-});
-
+// 🔄 IMAGE ANIMATIONS
 function setupMemeTransition(screenId, imgId) {
   const screen = document.getElementById(screenId);
   const img = document.getElementById(imgId);
 
-  if (!screen || !img) {
-    console.warn(`Missing screen or image element for ${screenId}, ${imgId}`);
-    return;
-  }
+  if (!screen || !img) return;
 
   img.style.transition = "transform 1s ease, opacity 1s ease";
   img.style.transform = "scale(0.5)";
@@ -267,6 +250,7 @@ setupMemeTransition("screen-6", "easy-meme");
 setupMemeTransition("screen-7", "medium-meme");
 setupMemeTransition("screen-8", "hard-meme");
 
+// 🎉 MUFFIN SURPRISE
 const muffinImg = document.querySelector('.muffin');
 const muffinMessageBox = document.getElementById('muffin-message-box');
 const muffinPartySound = new Audio('/party.mp3');
@@ -278,3 +262,5 @@ if (muffinImg) {
     muffinPartySound.play().catch(err => console.log("Sound error:", err));
   });
 }
+
+typeLine(0);
