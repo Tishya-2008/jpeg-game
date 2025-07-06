@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>insert name here</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    video, canvas {
+      display: block;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+    }
+    #similarityScore {
+      text-align: center;
+      font-size: 1.2em;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="screen-0" class="screen active">
+    <h1>first screen</h1>
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-1" class="screen">
+    <h1>second screen</h1>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-2" class="screen">
+    <h1>third screen</h1>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-3" class="screen">
+    <h1>fourth screen</h1>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-4" class="screen">
+    <h1>fifth screen</h1>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-5" class="screen">
+    <h1>sixth screen</h1>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-6" class="screen">
+    <h1>seventh screen</h1>
+    <div class="rectangle-container">
+      <div class="rectangle">
+        <img id="easy-meme" class="meme-image" alt="Easy meme" />
+      </div>
+      <div class="rectangle" id="webcam-rectangle">
+        <video id="webcam" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
+        <button id="captureBtn" style="display: block; margin: 10px auto;">Capture & Compare</button>
+        <canvas id="canvas" width="500" height="250" style="display:none;"></canvas>
+        <div id="similarityScore" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
+      </div>
+    </div>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-7" class="screen">
+    <h1>eighth screen</h1>
+    <div class="rectangle-container">
+      <div class="rectangle">
+        <img id="medium-meme" class="meme-image" alt="Medium meme" />
+      </div>
+      <div class="rectangle" id="webcam-rectangle-7">
+        <video id="webcam-7" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
+        <button id="captureBtn-7" style="display: block; margin: 10px auto;">Capture & Compare</button>
+        <canvas id="canvas-7" width="500" height="250" style="display:none;"></canvas>
+        <div id="similarityScore-7" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
+      </div>
+    </div>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-8" class="screen">
+    <h1>ninth screen</h1>
+    <div class="rectangle-container">
+      <div class="rectangle">
+        <img id="hard-meme" class="meme-image" alt="Hard meme" />
+      </div>
+      <div class="rectangle" id="webcam-rectangle-8">
+        <video id="webcam-8" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
+        <button id="captureBtn-8" style="display: block; margin: 10px auto;">Capture & Compare</button>
+        <canvas id="canvas-8" width="500" height="250" style="display:none;"></canvas>
+        <div id="similarityScore-8" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
+      </div>
+    </div>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-9" class="screen">
+    <h1>tenth screen</h1>
+    <div class="rectangle-container">
+      <div class="rectangle">
+      </div>
+      <div class="rectangle" id="webcam-rectangle-9">
+        <video id="webcam-9" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
+        <button id="captureBtn-9" style="display: block; margin: 10px auto;">Capture & Compare</button>
+        <canvas id="canvas-9" width="500" height="250" style="display:none;"></canvas>
+        <div id="similarityScore-9" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
+      </div>
+    </div>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+    <img class="next-arrow" src="next_arrow.png" alt="Next" />
+  </div>
+
+  <div id="screen-10" class="screen">
+    <h1>eleventh screen</h1>
+    <img class="back-arrow" src="back_arrow.png" alt="Back" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
