@@ -79,19 +79,34 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
 
       const base64Image = canvas.toDataURL('image/jpeg');
 
+      // Determine meme name based on screen
+      let memeName = "";
+      if (videoId === "webcam") {
+        memeName = chosenEasyMeme?.replace('.jpg', '');
+      } else if (videoId === "webcam-7") {
+        memeName = chosenMediumMeme?.replace('.jpg', '');
+      } else if (videoId === "webcam-8") {
+        memeName = chosenHardMeme?.replace('.jpg', '');
+      } else if (videoId === "webcam-9") {
+        memeName = "sigma";
+      }
+
       similarityDiv.textContent = "Comparing...";
 
       fetch('http://127.0.0.1:5000/compare', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image: base64Image })
+        body: JSON.stringify({
+          image: base64Image,
+          meme_name: memeName
+        })
       })
         .then(res => res.json())
         .then(data => {
           if (data.error) {
             similarityDiv.textContent = "Error: " + data.error;
           } else {
-            similarityDiv.textContent = "Similarity Score: " + data.similarity;
+            similarityDiv.textContent = "Similarity Score: " + (data.similarity * 100).toFixed(1) + "%";
           }
         })
         .catch(() => {
@@ -100,6 +115,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
     };
   }
 }
+
 
 setupWebcam("webcam", "canvas", "captureBtn", "similarityScore");
 setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
