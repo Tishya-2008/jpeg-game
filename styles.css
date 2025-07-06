@@ -40,6 +40,21 @@ body, html {
   background-repeat: no-repeat;
 }
 
+
+#screen-3 {
+  background-image: url('cute_raccoon.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#screen-4 {
+  background-image: url('jojo_raccoon.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .next-arrow {
   position: fixed;
   bottom: 30px;
