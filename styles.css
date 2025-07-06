@@ -55,6 +55,14 @@ body, html {
   background-repeat: no-repeat;
 }
 
+#screen-5 {
+  background-image: url('kyle.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 .next-arrow {
   position: fixed;
   bottom: 30px;
