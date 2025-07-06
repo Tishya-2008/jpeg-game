@@ -21,18 +21,15 @@ function showScreen(index) {
   }
   currentScreen = index;
 
-  // Reset next arrows globally (hide all)
   document.querySelectorAll(".next-arrow").forEach(arrow => {
     arrow.style.display = "none";
   });
 
-  // Show next arrows on all screens except 6,7,8
   if (![6, 7, 8].includes(index)) {
     const nextArrow = targetScreen?.querySelector(".next-arrow");
     if (nextArrow) nextArrow.style.display = "inline";
   }
 
-  // Load memes on their respective screens if not already chosen
   if (index === 6 && !chosenEasyMeme) {
     chosenEasyMeme = easyMemes[Math.floor(Math.random() * easyMemes.length)];
     const img = document.getElementById("easy-meme");
@@ -97,7 +94,6 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
 
       const base64Image = canvas.toDataURL('image/jpeg');
 
-      // Determine meme name based on screen/videoId
       let memeName = "";
       if (videoId === "webcam") {
         memeName = chosenEasyMeme?.replace('.jpg', '');
@@ -131,7 +127,6 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
             similarityDiv.textContent = "Similarity Score: " + similarityPercent + "%";
 
             if (similarityPercent >= 74) {
-              // Show next arrow only on this screen
               const nextArrow = video.closest(".screen")?.querySelector(".next-arrow");
               if (nextArrow) nextArrow.style.display = "inline";
             }
@@ -145,7 +140,6 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
   }
 }
 
-// Initialize webcams for all screens
 setupWebcam("webcam", "canvas", "captureBtn", "similarityScore");
 setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
 setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
