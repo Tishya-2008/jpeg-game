@@ -1,7 +1,7 @@
 let currentScreen = 0;
 
 const easyMemes = [
-  { src: 'e1_.jpg', caption: 'Found the last timbit in the box!' },
+  { src: 'e1.jpg', caption: 'Found the last timbit in the box!' },
   { src: 'e2.jpg', caption: 'When you realize Tims discontinued your favorite donut' },
   { src: 'e3.jpg', caption: 'When the raccoon opens your door like he pays rent' },
   { src: 'e4.jpg', caption: 'Can’t fail the test if you don’t show up' }
