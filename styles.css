@@ -91,3 +91,35 @@ body, html {
   width: 10vw;
   height: auto;
 }
+
+#typing-text-container,
+#typing-text-container1,
+#typing-text-container2,
+#typing-text-container3 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  padding: 15px 0;
+  text-align: center;
+}
+
+#typing-text,
+#typing-text1,
+#typing-text2,
+#typing-text3 {
+  color: white;
+  font-size: 1.2em;
+  font-family: monospace, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid white;
+  width: fit-content;
+  margin: 0 auto;
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
