@@ -125,6 +125,8 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
           } else {
             const similarityPercent = (data.similarity * 100).toFixed(1);
             similarityDiv.textContent = "Similarity Score: " + similarityPercent + "%";
+            similarityDiv.style.color = "white";
+
 
             if (similarityPercent >= 60) {
               const nextArrow = video.closest(".screen")?.querySelector(".next-arrow");
@@ -149,8 +151,9 @@ const texts = [
   "Welcome to ...",
   "In a world where memes reign supreme and raccoons hoard pastries like priceless treasure... ",
   "Kyle was always the second pick. His brother Marvin? A coding prodigy.",
-  "Now, trapped in a raccoon-infested meme simulation created by Marvin (for 'research purposes'), Kyle must prove he's more than just “the other brother.”",
-  "To escape, he must master the ancient art of meme mimicry, survive the stages of digital chaos, and fulfill a sacred Tim Hortons order."
+  "The previous workers were decieved by it's cunning guise of innocence",
+  "But I see the monster behind it, the devourer of coffee blood, destroyer of sanitation.",
+  "its time to being thy journeyoush"
 ];
 
 const elementIds = [
@@ -158,7 +161,8 @@ const elementIds = [
   "typing-text1",
   "typing-text2",
   "typing-text3",
-  "typing-text4"
+  "typing-text4",
+  "typing-text5"
 ];
 
 let lineIndex = 0;

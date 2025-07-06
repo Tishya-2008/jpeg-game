@@ -133,7 +133,9 @@ body, html {
 #typing-text,
 #typing-text1,
 #typing-text2,
-#typing-text3 {
+#typing-text3,
+#typing-text4,
+#typing-text5 {
   color: white;
   font-size: 1.2em;
   font-family: monospace, monospace;
