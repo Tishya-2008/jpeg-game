@@ -5,6 +5,13 @@
   <title>insert name here</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
+    .meme-image {
+    width: 500px;
+    height: 250px;
+    object-fit: cover; /* keeps aspect ratio without distortion */
+    display: block;
+    margin: 0 auto;
+    }
     video, canvas {
       display: block;
       margin: 10px auto;
@@ -116,6 +123,7 @@
     <img class="progress_bar" src="25.png" alt="progress" />
     <div class="rectangle-container">
       <div class="rectangle">
+        <img id="sigma-meme" class="meme-image" src="memes/sigma.jpg" alt="Sigma meme" />
       </div>
       <div class="rectangle" id="webcam-rectangle-9">
         <video id="webcam-9" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
