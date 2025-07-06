@@ -140,6 +140,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
             similarityDiv.textContent = "Kyle Factor: " + similarityPercent + "%";
             similarityDiv.style.color = "white";
             similarityDiv.style.fontFamily = "monospace";
+            similarityDiv.style.fontSize = "20px";
 
 
             if (similarityPercent >= 60) {
