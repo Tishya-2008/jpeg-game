@@ -174,9 +174,9 @@ setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
 setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
 setupWebcam("webcam-9", "canvas-9", "captureBtn-9", "similarityScore-9");
 
-// 🔠 TYPING TEXT
+// TYPING TEXT
 const texts = [
-  "Welcome to ...",
+  "Meme the Dream [Ft. Kyle]",
   "In a world where memes reign supreme and raccoons hoard pastries like priceless treasure... ",
   "Kyle was always the second pick. His brother Marvin? A coding prodigy.",
   "The previous workers were deceived by its cunning guise of innocence",
@@ -264,7 +264,7 @@ setupMemeTransition("screen-8", "hard-meme");
 // 🎉 MUFFIN SURPRISE
 const muffinImg = document.querySelector('.muffin');
 const muffinMessageBox = document.getElementById('muffin-message-box');
-const muffinPartySound = new Audio('/party.mp3');
+const muffinPartySound = new Audio('/fanfare.mp3');
 
 if (muffinImg) {
   muffinImg.addEventListener('click', () => {
