@@ -137,7 +137,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
             similarityDiv.textContent = "Error: " + data.error;
           } else {
             const similarityPercent = (data.similarity * 100).toFixed(1);
-            similarityDiv.textContent = "Similarity Score: " + similarityPercent + "%";
+            similarityDiv.textContent = "Kyle Factor: " + similarityPercent + "%";
             similarityDiv.style.color = "white";
             similarityDiv.style.fontFamily = "monospace";
 
