@@ -70,7 +70,7 @@ body, html {
   width: 60px;
   cursor: pointer;
   transition: transform 0.2s;
-  z-index:1000;
+  z-index:10;
 }
 
 .back-arrow {
@@ -80,13 +80,13 @@ body, html {
   width: 60px;
   cursor: pointer;
   transition: transform 0.2s;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .next-arrow:hover,
 .back-arrow:hover {
   transform: scale(1.5);
-  z-index: 1000;
+  z-index: 10;
 }
 
 .rectangle-container {
@@ -103,7 +103,8 @@ body, html {
   padding-right: 20px;   
   box-sizing: border-box;
   height: auto;          
-  min-height: 100vh;     
+  min-height: 100vh;  
+  margin-top: -35px;   
 }
 
 .rectangle {
@@ -111,6 +112,7 @@ body, html {
   height: 250px;
   border: 5px solid black;
   background-color: white;
+  margin-bottom: -10px;
 }
 
 .progress_bar {
@@ -199,4 +201,104 @@ video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.muffin {
+  background-color: #ff69b4;       /* bright pink */
+  color: white;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-weight: bold;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  user-select: none;
+  font-size: 18px;
+}
+
+.muffin:hover {
+  background-color: #ff85c1;      /* lighter pink on hover */
+  transform: scale(1.1);
+}
+
+.muffin:active {
+  background-color: #fa79b9;      /* darker pink when clicked */
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.9);
+}
+
+#muffin-message-box {
+  display: none;
+  position: relative;
+  background: rgba(68, 68, 68, 0.8); /* 80% opaque grey */
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 30px auto;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#muffin-message {
+  position: relative;
+  color: white;
+  font-family: monospace;
+  font-size: 24px;
+  z-index: 100; /* Ensure text is above background */
+}
+
+
+.meme-button {
+  display: block;
+  margin: 20px auto;
+  padding: 8px 15px;
+  background: linear-gradient(145deg, #81A8FE, #3312FF);
+  color: #fff;
+  font-family: monospace;
+  font-size: 14px;
+  border: 2px solid rgb(214, 247, 247);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #81A8FE, 0 0 10px #3312FF;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.meme-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #94c5f5, 0 0 12px #3f87ff;
+}
+
+.meme-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 15px rgb(157, 216, 248) inset;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rectangle {
+  position: relative; 
+  width: 500px;       
+  height: 250px;      
+}
+
+.caption {
+  position: absolute;
+  bottom: 10px;           
+  width: 100%;            
+  text-align: center;     
+  color: white;           
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;              
+  pointer-events: none; 
+  background-color: rgba(35, 43, 191, 0.6); 
 }

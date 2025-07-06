@@ -1,8 +1,26 @@
 let currentScreen = 0;
 
-const easyMemes = ['e1.jpg', 'e2.jpg', 'e3.jpg', 'e4.jpg'];
-const mediumMemes = ['m1.jpg', 'm2.jpg', 'm3.jpg', 'm4.jpg'];
-const hardMemes = ['h1.jpg', 'h2.jpg', 'h3.jpg', 'h4.jpg'];
+const easyMemes = [
+  { src: 'e1.jpg', caption: 'Found the last timbit in the box!' },
+  { src: 'e2.jpg', caption: 'When you realize Tims discontinued your favorite donut' },
+  { src: 'e3.jpg', caption: 'When the raccoon opens your door like he pays rent' },
+  { src: 'e4.jpg', caption: 'Can’t fail the test if you don’t show up' }
+];
+
+const mediumMemes = [
+  { src: 'm1.jpg', caption: 'Do I tell them the raccoon stole my homework?' },
+  { src: 'm2.jpg', caption: 'Two sips into my iced cap and I’m a philosopher' },
+  { src: 'm3.jpg', caption: 'No thoughts, just chaos and raccoons' },
+  { src: 'm4.jpg', caption: 'Tim Hortons girl gave me extra whipped cream. We’re basically engaged' }
+];
+
+const hardMemes = [
+  { src: 'h1.jpg', caption: 'Got free Timbits at the drive-thru' },
+  { src: 'h2.jpg', caption: 'When your teacher starts the Kahoot music' },
+  { src: 'h3.jpg', caption: 'When the raccoon outside makes eye contact' },
+  { src: 'h4.jpg', caption: 'When the raccoon steals your last Tims donut and Kyle’s nowhere to be found' }
+];
+
 const bruhSound = new Audio('/Bruh.mp3');
 const partySound = new Audio('/party.mp3');
 
@@ -38,31 +56,31 @@ function showScreen(index) {
   }
 
   if (index === 6 && !chosenEasyMeme) {
-    chosenEasyMeme = easyMemes[Math.floor(Math.random() * easyMemes.length)];
-    const img = document.getElementById("easy-meme");
-    if (img) {
-      img.src = "memes/" + chosenEasyMeme;
-      console.log("Chosen Easy Meme (screen-6):", chosenEasyMeme);
-    }
-  }
+  chosenEasyMeme = easyMemes[Math.floor(Math.random() * easyMemes.length)];
+  const img = document.getElementById("easy-meme");
+  const caption = document.getElementById("easy-meme-caption");
+  if (img) img.src = "memes/" + chosenEasyMeme.src;
+  if (caption) caption.textContent = chosenEasyMeme.caption;
+  console.log("Chosen Easy Meme (screen-6):", chosenEasyMeme);
+}
 
-  if (index === 7 && !chosenMediumMeme) {
-    chosenMediumMeme = mediumMemes[Math.floor(Math.random() * mediumMemes.length)];
-    const img = document.getElementById("medium-meme");
-    if (img) {
-      img.src = "memes/" + chosenMediumMeme;
-      console.log("Chosen Medium Meme (screen-7):", chosenMediumMeme);
-    }
-  }
+if (index === 7 && !chosenMediumMeme) {
+  chosenMediumMeme = mediumMemes[Math.floor(Math.random() * mediumMemes.length)];
+  const img = document.getElementById("medium-meme");
+  const caption = document.getElementById("medium-meme-caption");
+  if (img) img.src = "memes/" + chosenMediumMeme.src;
+  if (caption) caption.textContent = chosenMediumMeme.caption;
+  console.log("Chosen Medium Meme (screen-7):", chosenMediumMeme);
+}
 
-  if (index === 8 && !chosenHardMeme) {
-    chosenHardMeme = hardMemes[Math.floor(Math.random() * hardMemes.length)];
-    const img = document.getElementById("hard-meme");
-    if (img) {
-      img.src = "memes/" + chosenHardMeme;
-      console.log("Chosen Hard Meme (screen-8):", chosenHardMeme);
-    }
-  }
+if (index === 8 && !chosenHardMeme) {
+  chosenHardMeme = hardMemes[Math.floor(Math.random() * hardMemes.length)];
+  const img = document.getElementById("hard-meme");
+  const caption = document.getElementById("hard-meme-caption");
+  if (img) img.src = "memes/" + chosenHardMeme.src;
+  if (caption) caption.textContent = chosenHardMeme.caption;
+  console.log("Chosen Hard Meme (screen-8):", chosenHardMeme);
+}
 }
 
 document.querySelectorAll(".next-arrow").forEach(function (arrow) {
@@ -109,11 +127,11 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
 
       let memeName = "";
       if (videoId === "webcam") {
-        memeName = chosenEasyMeme?.replace('.jpg', '');
+        memeName = chosenEasyMeme?.src.replace('.jpg', '');
       } else if (videoId === "webcam-7") {
-        memeName = chosenMediumMeme?.replace('.jpg', '');
+        memeName = chosenMediumMeme?.src.replace('.jpg', '');
       } else if (videoId === "webcam-8") {
-        memeName = chosenHardMeme?.replace('.jpg', '');
+        memeName = chosenHardMeme?.src.replace('.jpg', '');
       } else if (videoId === "webcam-9") {
         memeName = "sigma";
       }
@@ -129,6 +147,7 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
           meme_name: memeName
         })
       })
+
         .then(res => res.json())
         .then(data => {
           btn.disabled = false;
@@ -171,7 +190,7 @@ const texts = [
   "Kyle was always the second pick. His brother Marvin? A coding prodigy.",
   "The previous workers were decieved by it's cunning guise of innocence",
   "But I see the monster behind it, the devourer of coffee blood, destroyer of sanitation.",
-  "its time to being thy journeyoush"
+  "You know what the raccoons are scared of ... OUR MEME faces! Let's show them"
 ];
 
 const elementIds = [
@@ -247,3 +266,15 @@ function setupMemeTransition(screenId, imgId) {
 setupMemeTransition("screen-6", "easy-meme");
 setupMemeTransition("screen-7", "medium-meme");
 setupMemeTransition("screen-8", "hard-meme");
+
+const muffinImg = document.querySelector('.muffin');
+const muffinMessageBox = document.getElementById('muffin-message-box');
+const muffinPartySound = new Audio('/party.mp3');
+
+if (muffinImg) {
+  muffinImg.addEventListener('click', () => {
+    muffinMessageBox.style.display = 'block';
+    muffinPartySound.currentTime = 0;
+    muffinPartySound.play().catch(err => console.log("Sound error:", err));
+  });
+}
