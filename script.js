@@ -146,6 +146,7 @@ setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
 setupWebcam("webcam-9", "canvas-9", "captureBtn-9", "similarityScore-9");
 
 const texts = [
+  "Welcome to ...",
   "In a world where memes reign supreme and raccoons hoard pastries like priceless treasure... ",
   "Kyle was always the second pick. His brother Marvin? A coding prodigy.",
   "Now, trapped in a raccoon-infested meme simulation created by Marvin (for 'research purposes'), Kyle must prove he's more than just “the other brother.”",
@@ -156,7 +157,8 @@ const elementIds = [
   "typing-text",
   "typing-text1",
   "typing-text2",
-  "typing-text3"
+  "typing-text3",
+  "typing-text4"
 ];
 
 let lineIndex = 0;
