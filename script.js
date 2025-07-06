@@ -106,7 +106,13 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
           if (data.error) {
             similarityDiv.textContent = "Error: " + data.error;
           } else {
-            similarityDiv.textContent = "Similarity Score: " + (data.similarity * 100).toFixed(1) + "%";
+            const similarityPercent = (data.similarity * 100).toFixed(1);
+            similarityDiv.textContent = "Similarity Score: " + similarityPercent + "%";
+          
+            if (similarityPercent >= 74) {
+              const nextArrow = video.closest(".screen").querySelector(".next-arrow");
+              if (nextArrow) nextArrow.style.display = "inline";
+            }
           }
         })
         .catch(() => {
@@ -169,3 +175,33 @@ window.addEventListener('DOMContentLoaded', () => {
 
   typeLine();
 });
+
+function setupMemeTransition(screenId, imgId) {
+  const screen = document.getElementById(screenId);
+  const img = document.getElementById(imgId);
+
+  if (!screen || !img) {
+    console.warn(`Missing screen or image element for ${screenId}, ${imgId}`);
+    return;
+  }
+
+  img.style.transition = "transform 1s ease, opacity 1s ease";
+  img.style.transform = "scale(0.5)";
+  img.style.opacity = "0";
+
+  const observer = new MutationObserver(() => {
+    if (screen.classList.contains("active")) {
+      img.style.transform = "scale(1)";
+      img.style.opacity = "1";
+    } else {
+      img.style.transform = "scale(0.5)";
+      img.style.opacity = "0";
+    }
+  });
+
+  observer.observe(screen, { attributes: true, attributeFilter: ['class'] });
+}
+
+setupMemeTransition("screen-6", "easy-meme");
+setupMemeTransition("screen-7", "medium-meme");
+setupMemeTransition("screen-8", "hard-meme");
