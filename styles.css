@@ -27,14 +27,14 @@ body, html {
 }
 
 #screen-1 {
-  background-image: url('scary_raccoon.jpg');
+  background-image: url('raccoon_outside_tims.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 #screen-2 {
-  background-image: url('raccoon_outside_tims.jpg');
+  background-image: url('scary_raccoon.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
