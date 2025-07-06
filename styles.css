@@ -149,3 +149,43 @@ body, html {
   from, to { border-color: transparent; }
   50% { border-color: white; }
 }
+
+#screen-6 {
+  background-image: url('raccoon100.jpg');
+  background-repeat: no-repeat;
+  background-position: -150px center; 
+  background-size: auto 100%;
+  background-color: #0b040A;
+}
+
+#screen-7 {
+  background-image: url('raccoon75.jpg');
+  background-repeat: no-repeat;
+  background-position: -150px center; 
+  background-size: auto 100%;
+  background-color: #0b040A;
+}
+
+#screen-8 {
+  background-image: url('raccoon50.jpg');
+  background-repeat: no-repeat;
+  background-position: -150px center; 
+  background-size: auto 100%;
+  background-color: #0b040A;
+}
+
+#screen-9 {
+  background-image: url('raccoon25.jpg');
+  background-repeat: no-repeat;
+  background-position: -150px center; 
+  background-size: auto 100%;
+  background-color: #0b040A;
+}
+
+#screen-10 {
+  background-image: url('raccoon0.jpg');
+  background-repeat: no-repeat;
+  background-position: -150px center; 
+  background-size: auto 100%;
+  background-color: #0b040A;
+}
