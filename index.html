@@ -11,7 +11,31 @@
     object-fit: cover; 
     display: block;
     margin: 0 auto;
+    
     }
+    .meme-button {
+    display: block;
+    margin: 15px auto;
+    padding: 10px 20px;
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .meme-button:hover {
+    background-color: #e84118;
+    transform: scale(1.05);
+  }
+
+  .meme-button:active {
+    transform: scale(0.98);
+  }
     video, canvas {
       display: block;
       margin: 10px auto;
@@ -91,7 +115,7 @@
       </div>
       <div class="rectangle" id="webcam-rectangle">
         <video id="webcam" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
-        <button id="captureBtn" style="display: block; margin: 10px auto;">Meme It</button>
+        <button id="captureBtn" class="meme-button" style="display: block; margin: 10px auto;">Meme It</button>
         <canvas id="canvas" width="500" height="250" style="display:none;"></canvas>
         <div id="similarityScore" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
       </div>
@@ -108,7 +132,7 @@
       </div>
       <div class="rectangle" id="webcam-rectangle-7">
         <video id="webcam-7" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
-        <button id="captureBtn-7" style="display: block; margin: 10px auto;">Meme It</button>
+        <button id="captureBtn-7" class="meme-button" style="display: block; margin: 10px auto;">Meme It</button>
         <canvas id="canvas-7" width="500" height="250" style="display:none;"></canvas>
         <div id="similarityScore-7" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
       </div>
@@ -125,7 +149,7 @@
       </div>
       <div class="rectangle" id="webcam-rectangle-8">
         <video id="webcam-8" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
-        <button id="captureBtn-8" style="display: block; margin: 10px auto;">Meme It</button>
+        <button id="captureBtn-8" class="meme-button" style="display: block; margin: 10px auto;">Meme It</button>
         <canvas id="canvas-8" width="500" height="250" style="display:none;"></canvas>
         <div id="similarityScore-8" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
       </div>
@@ -142,7 +166,7 @@
       </div>
       <div class="rectangle" id="webcam-rectangle-9">
         <video id="webcam-9" autoplay playsinline width="500" height="250" style="transform: scaleX(-1); margin-top: -3px;"></video>
-        <button id="captureBtn-9" style="display: block; margin: 10px auto;">Meme It</button>
+        <button id="captureBtn-9" class="meme-button"style="display: block; margin: 10px auto;">Meme It</button>
         <canvas id="canvas-9" width="500" height="250" style="display:none;"></canvas>
         <div id="similarityScore-9" style="text-align:center; font-weight:bold; margin-top: 10px;"></div>
       </div>
