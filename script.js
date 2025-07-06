@@ -23,6 +23,10 @@ const hardMemes = [
 
 const bruhSound = new Audio('/Bruh.mp3');
 const partySound = new Audio('/party.mp3');
+const muffinPartySound = new Audio('/fanfare.mp3');
+const typingSound = new Audio('/typing.mp3');
+
+const allSounds = [typingSound, bruhSound, partySound, muffinPartySound];
 
 let chosenEasyMeme = null;
 let chosenMediumMeme = null;
@@ -36,14 +40,11 @@ function showScreen(index) {
 
   for (let i = 0; i <= 10; i++) {
     const screen = document.getElementById("screen-" + i);
-    if (screen) {
-      screen.classList.remove("active");
-    }
+    if (screen) screen.classList.remove("active");
   }
+
   const targetScreen = document.getElementById("screen-" + index);
-  if (targetScreen) {
-    targetScreen.classList.add("active");
-  }
+  if (targetScreen) targetScreen.classList.add("active");
 
   currentScreen = index;
 
@@ -58,45 +59,34 @@ function showScreen(index) {
 
   if (index === 6 && !chosenEasyMeme) {
     chosenEasyMeme = easyMemes[Math.floor(Math.random() * easyMemes.length)];
-    const img = document.getElementById("easy-meme");
-    const caption = document.getElementById("easy-meme-caption");
-    if (img) img.src = "memes/" + chosenEasyMeme.src;
-    if (caption) caption.textContent = chosenEasyMeme.caption;
+    document.getElementById("easy-meme").src = "memes/" + chosenEasyMeme.src;
+    document.getElementById("easy-meme-caption").textContent = chosenEasyMeme.caption;
   }
 
   if (index === 7 && !chosenMediumMeme) {
     chosenMediumMeme = mediumMemes[Math.floor(Math.random() * mediumMemes.length)];
-    const img = document.getElementById("medium-meme");
-    const caption = document.getElementById("medium-meme-caption");
-    if (img) img.src = "memes/" + chosenMediumMeme.src;
-    if (caption) caption.textContent = chosenMediumMeme.caption;
+    document.getElementById("medium-meme").src = "memes/" + chosenMediumMeme.src;
+    document.getElementById("medium-meme-caption").textContent = chosenMediumMeme.caption;
   }
 
   if (index === 8 && !chosenHardMeme) {
     chosenHardMeme = hardMemes[Math.floor(Math.random() * hardMemes.length)];
-    const img = document.getElementById("hard-meme");
-    const caption = document.getElementById("hard-meme-caption");
-    if (img) img.src = "memes/" + chosenHardMeme.src;
-    if (caption) caption.textContent = chosenHardMeme.caption;
+    document.getElementById("hard-meme").src = "memes/" + chosenHardMeme.src;
+    document.getElementById("hard-meme-caption").textContent = chosenHardMeme.caption;
   }
 
-  // 🟢 START TYPING ANIMATION IF THAT SCREEN NEEDS IT
   startTypingIfNeeded(index);
 }
 
-document.querySelectorAll(".next-arrow").forEach(function (arrow) {
-  arrow.addEventListener("click", function () {
-    if (currentScreen < 10) {
-      showScreen(currentScreen + 1);
-    }
+document.querySelectorAll(".next-arrow").forEach(arrow => {
+  arrow.addEventListener("click", () => {
+    if (currentScreen < 10) showScreen(currentScreen + 1);
   });
 });
 
-document.querySelectorAll(".back-arrow").forEach(function (arrow) {
-  arrow.addEventListener("click", function () {
-    if (currentScreen > 0) {
-      showScreen(currentScreen - 1);
-    }
+document.querySelectorAll(".back-arrow").forEach(arrow => {
+  arrow.addEventListener("click", () => {
+    if (currentScreen > 0) showScreen(currentScreen - 1);
   });
 });
 
@@ -108,15 +98,14 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
   const similarityDiv = document.getElementById(resultId);
 
   if (video && canvas && ctx && btn && similarityDiv) {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        video.srcObject = stream;
-        video.onloadedmetadata = () => {
-          video.play();
-          canvas.width = 500;
-          canvas.height = 250;
-        };
-      })
+    navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+      video.srcObject = stream;
+      video.onloadedmetadata = () => {
+        video.play();
+        canvas.width = 500;
+        canvas.height = 250;
+      };
+    });
 
     btn.onclick = () => {
       ctx.save();
@@ -125,7 +114,6 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
       ctx.restore();
 
       const base64Image = canvas.toDataURL('image/jpeg');
-
       let memeName = "";
       if (videoId === "webcam") memeName = chosenEasyMeme?.src.replace('.jpg', '');
       else if (videoId === "webcam-7") memeName = chosenMediumMeme?.src.replace('.jpg', '');
@@ -174,7 +162,7 @@ setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
 setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
 setupWebcam("webcam-9", "canvas-9", "captureBtn-9", "similarityScore-9");
 
-// TYPING TEXT
+// Typing Animation
 const texts = [
   "Meme the Dream [Ft. Kyle]",
   "In a world where memes reign supreme and raccoons hoard pastries like priceless treasure... ",
@@ -195,9 +183,6 @@ const elementIds = [
 
 const typedAlready = new Set();
 
-const typingSound = new Audio('typing.mp3');
-typingSound.loop = true; 
-
 function typeLine(lineIndex) {
   if (lineIndex >= texts.length || typedAlready.has(lineIndex)) return;
 
@@ -207,7 +192,6 @@ function typeLine(lineIndex) {
   currentElement.textContent = '';
   let charIndex = 0;
 
-  // Start the typing sound
   typingSound.currentTime = 0;
   typingSound.play().catch(e => console.log("Typing sound error:", e));
 
@@ -217,7 +201,6 @@ function typeLine(lineIndex) {
       charIndex++;
       setTimeout(typeChar, 40);
     } else {
-      // Stop the typing sound when done
       typingSound.pause();
       typedAlready.add(lineIndex);
     }
@@ -226,14 +209,16 @@ function typeLine(lineIndex) {
   typeChar();
 }
 
-
 function startTypingIfNeeded(screenIndex) {
   if (screenIndex >= 0 && screenIndex <= 5) {
     typeLine(screenIndex);
   }
 }
 
-// 🔄 IMAGE ANIMATIONS
+setupMemeTransition("screen-6", "easy-meme");
+setupMemeTransition("screen-7", "medium-meme");
+setupMemeTransition("screen-8", "hard-meme");
+
 function setupMemeTransition(screenId, imgId) {
   const screen = document.getElementById(screenId);
   const img = document.getElementById(imgId);
@@ -257,20 +242,33 @@ function setupMemeTransition(screenId, imgId) {
   observer.observe(screen, { attributes: true, attributeFilter: ['class'] });
 }
 
-setupMemeTransition("screen-6", "easy-meme");
-setupMemeTransition("screen-7", "medium-meme");
-setupMemeTransition("screen-8", "hard-meme");
-
-// 🎉 MUFFIN SURPRISE
+// Muffin Surprise
 const muffinImg = document.querySelector('.muffin');
 const muffinMessageBox = document.getElementById('muffin-message-box');
-const muffinPartySound = new Audio('/fanfare.mp3');
 
 if (muffinImg) {
   muffinImg.addEventListener('click', () => {
     muffinMessageBox.style.display = 'block';
     muffinPartySound.currentTime = 0;
     muffinPartySound.play().catch(err => console.log("Sound error:", err));
+  });
+}
+
+// Mute toggle
+let isMuted = false;
+const muteButton = document.getElementById('mute-toggle');
+
+function updateMuteState() {
+  allSounds.forEach(sound => {
+    sound.muted = isMuted;
+  });
+  muteButton.textContent = isMuted ? '🔇' : '🔊';
+}
+
+if (muteButton) {
+  muteButton.addEventListener('click', () => {
+    isMuted = !isMuted;
+    updateMuteState();
   });
 }
 
