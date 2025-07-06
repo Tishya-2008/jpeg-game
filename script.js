@@ -195,6 +195,9 @@ const elementIds = [
 
 const typedAlready = new Set();
 
+const typingSound = new Audio('typing.mp3');
+typingSound.loop = true; 
+
 function typeLine(lineIndex) {
   if (lineIndex >= texts.length || typedAlready.has(lineIndex)) return;
 
@@ -204,17 +207,25 @@ function typeLine(lineIndex) {
   currentElement.textContent = '';
   let charIndex = 0;
 
+  // Start the typing sound
+  typingSound.currentTime = 0;
+  typingSound.play().catch(e => console.log("Typing sound error:", e));
+
   function typeChar() {
     if (charIndex < texts[lineIndex].length) {
       currentElement.textContent += texts[lineIndex].charAt(charIndex);
       charIndex++;
       setTimeout(typeChar, 40);
+    } else {
+      // Stop the typing sound when done
+      typingSound.pause();
+      typedAlready.add(lineIndex);
     }
   }
 
-  typedAlready.add(lineIndex);
   typeChar();
 }
+
 
 function startTypingIfNeeded(screenIndex) {
   if (screenIndex >= 0 && screenIndex <= 5) {
