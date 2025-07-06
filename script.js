@@ -21,6 +21,8 @@ const hardMemes = [
   { src: 'h4.jpg', caption: 'When the raccoon steals your last Tims donut and Kyle’s nowhere to be found' }
 ];
 
+const sigmaMeme = "sigma.jpg"
+
 const bruhSound = new Audio('/Bruh.mp3');
 const partySound = new Audio('/party.mp3');
 const muffinPartySound = new Audio('/fanfare.mp3');
@@ -253,6 +255,7 @@ if (muffinImg) {
     muffinPartySound.play().catch(err => console.log("Sound error:", err));
   });
 }
+
 
 // Mute toggle
 let isMuted = false;
