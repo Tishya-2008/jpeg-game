@@ -116,7 +116,6 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
   }
 }
 
-
 setupWebcam("webcam", "canvas", "captureBtn", "similarityScore");
 setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
 setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
