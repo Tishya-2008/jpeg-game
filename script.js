@@ -3,12 +3,18 @@ let currentScreen = 0;
 const easyMemes = ['e1.jpg', 'e2.jpg', 'e3.jpg', 'e4.jpg'];
 const mediumMemes = ['m1.jpg', 'm2.jpg', 'm3.jpg', 'm4.jpg'];
 const hardMemes = ['h1.jpg', 'h2.jpg', 'h3.jpg', 'h4.jpg'];
+const bruhSound = new Audio('/Bruh.mp3');
 
 let chosenEasyMeme = null;
 let chosenMediumMeme = null;
 let chosenHardMeme = null;
 
 function showScreen(index) {
+  if ([6, 7, 8, 9].includes(index)) {
+    bruhSound.currentTime = 0; // rewind if already playing
+    bruhSound.play().catch(e => console.log("Audio play error:", e));
+  }
+
   for (let i = 0; i <= 10; i++) {
     const screen = document.getElementById("screen-" + i);
     if (screen) {

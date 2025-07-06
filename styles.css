@@ -114,8 +114,9 @@ body, html {
 }
 
 .progress_bar {
+  position: absolute;
   width: 10vw;
-  margin-left:230px;
+  margin-left:290px;
   margin-top: 160px;
   height: auto;
 }
