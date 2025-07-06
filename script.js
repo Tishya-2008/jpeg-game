@@ -120,3 +120,52 @@ setupWebcam("webcam", "canvas", "captureBtn", "similarityScore");
 setupWebcam("webcam-7", "canvas-7", "captureBtn-7", "similarityScore-7");
 setupWebcam("webcam-8", "canvas-8", "captureBtn-8", "similarityScore-8");
 setupWebcam("webcam-9", "canvas-9", "captureBtn-9", "similarityScore-9");
+
+const texts = [
+  "In a world where memes reign supreme and raccoons hoard pastries like priceless treasure... ",
+  "Kyle was always the second pick. His brother Marvin? A coding prodigy.",
+  "Now, trapped in a raccoon-infested meme simulation created by Marvin (for 'research purposes'), Kyle must prove he's more than just “the other brother.”",
+  "To escape, he must master the ancient art of meme mimicry, survive the stages of digital chaos, and fulfill a sacred Tim Hortons order."
+];
+
+const elementIds = [
+  "typing-text",
+  "typing-text1",
+  "typing-text2",
+  "typing-text3"
+];
+
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeLine() {
+  if (lineIndex >= texts.length) return;
+
+  const currentElement = document.getElementById(elementIds[lineIndex]);
+  if (!currentElement) {
+    console.warn(`Element with id ${elementIds[lineIndex]} not found.`);
+    lineIndex++;
+    charIndex = 0;
+    setTimeout(typeLine, 500);
+    return;
+  }
+
+  if (charIndex < texts[lineIndex].length) {
+    currentElement.textContent += texts[lineIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeLine, 50);
+  } else {
+    lineIndex++;
+    charIndex = 0;
+    setTimeout(typeLine, 700); 
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  elementIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '';
+  });
+
+  typeLine();
+});
