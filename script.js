@@ -83,8 +83,14 @@ function setupWebcam(videoId, canvasId, buttonId, resultId) {
 
   if (video && canvas && ctx && btn && similarityDiv) {
     navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => { video.srcObject = stream; })
-      .catch(err => alert("Webcam error: " + err));
+      .then(stream => {
+        video.srcObject = stream;
+        video.onloadedmetadata = () => {
+          video.play();
+          canvas.width = 500;
+          canvas.height = 200;
+        };
+      })
 
     btn.onclick = () => {
       ctx.save();
